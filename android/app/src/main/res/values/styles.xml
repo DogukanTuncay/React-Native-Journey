@@ -6,7 +6,8 @@
         <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
     </style>
     <style name="SplashTheme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#FFFFFF</item>
+        <item name="windowSplashScreenBackground">#1E88E5</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/playstore</item>
     </style>
+
 </resources>

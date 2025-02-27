@@ -1,15 +1,17 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import FooterMenu from '../../components/User/includes/FooterMenu';
+import { useUser } from '../../context/UserContext';
 
 const UserLayout = ({ children, onNavigate }) => {
+    const { user } = useUser();
   return (
     <View style={styles.container}>
       {/* Ana İçerik */}
       <View style={styles.content}>{children}</View>
 
       {/* Footer Menü */}
-      <FooterMenu onNavigate={onNavigate} />
+      <FooterMenu user={user} onNavigate={onNavigate} />
     </View>
   );
 };

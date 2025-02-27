@@ -6,20 +6,18 @@
       android:name=".MainApplication"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
-      android:roundIcon="@mipmap/ic_launcher_round"
+      android:roundIcon="@mipmap/ic_launcher"
       android:allowBackup="false"
       android:theme="@style/AppTheme"
       android:supportsRtl="true">
+
         <!-- SplashActivity burada tanımlanıyor -->
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/SplashTheme"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <!-- MainActivity'yi burada tanımlıyoruz -->
@@ -31,7 +29,10 @@
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme"
             android:exported="true">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
     </application>
