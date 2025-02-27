@@ -1,37 +1,39 @@
 import React, { useState } from 'react';
-import {
-  View, Text, TextInput, TouchableOpacity, StyleSheet, Alert
-} from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
-export default function LoginScreen({ onNavigate, navigation }) {
-
-  const [username, setUsername] = useState('');
+export default function LoginScreen({ onNavigate }) {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    if (!username || !password) {
+    if (!email || !password) {
       Alert.alert('Hata', 'Lütfen tüm alanları doldurun!');
       return;
     }
-    Alert.alert('Başarılı', 'Giriş yapıldı!');
+
+    // E-posta kontrolü: Eğer "admin" veya "user" varsa
+    if (email.includes("admin")) {
+      onNavigate('Admin'); // Admin paneline yönlendir
+    } else if (email.includes("user")) {
+      onNavigate('User'); // User paneline yönlendir
+    } else {
+      Alert.alert('Hata', 'Geçersiz e-posta adresi');
+    }
   };
 
   return (
     <View style={styles.container}>
+      <Image source={require('../assets/logo.webp')} style={styles.logo} />
       <Text style={styles.title}>Hoş Geldiniz! 👋</Text>
-      <Text style={styles.subtitle}>Lütfen giriş yapın</Text>
-
       <TextInput
         style={styles.input}
-        placeholder="Kullanıcı Adı"
-        placeholderTextColor="#aaa"
-        value={username}
-        onChangeText={setUsername}
+        placeholder="E-posta"
+        value={email}
+        onChangeText={setEmail}
       />
       <TextInput
         style={styles.input}
         placeholder="Şifre"
-        placeholderTextColor="#aaa"
         secureTextEntry
         value={password}
         onChangeText={setPassword}
@@ -39,10 +41,6 @@ export default function LoginScreen({ onNavigate, navigation }) {
 
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
         <Text style={styles.loginButtonText}>Giriş Yap</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.backButton} onPress={onNavigate}>
-        <Text style={styles.backButtonText}>← Geri Dön</Text>
       </TouchableOpacity>
     </View>
   );
@@ -56,17 +54,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#F4F4F4',
     padding: 20,
   },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    color: '#333',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 20,
-  },
+   logo: {
+      width: 200,
+      height:200,
+      marginBottom: 20,
+      resizeMode: 'contain',
+    },
   input: {
     width: '90%',
     height: 50,
@@ -76,10 +69,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderWidth: 1,
     borderColor: '#ddd',
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
   },
   loginButton: {
     backgroundColor: '#007AFF',
@@ -87,18 +76,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '90%',
     alignItems: 'center',
-    marginBottom: 10,
   },
   loginButtonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
-  },
-  backButton: {
-    paddingVertical: 10,
-  },
-  backButtonText: {
-    color: '#007AFF',
-    fontSize: 16,
   },
 });

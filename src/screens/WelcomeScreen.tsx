@@ -3,7 +3,7 @@ import {
   View, Text, Image, TouchableOpacity, StyleSheet
 } from 'react-native';
 
-const  WelcomeScreen = ({ onNavigate }) => {
+const WelcomeScreen = ({ onNavigate }) => {
   return (
     <View style={styles.container}>
       <Image source={require('../assets/logo.webp')} style={styles.logo} />
@@ -11,7 +11,10 @@ const  WelcomeScreen = ({ onNavigate }) => {
       <Text style={styles.title}>Hoş Geldiniz! 👋</Text>
       <Text style={styles.subtitle}>Hemen giriş yap ve keşfetmeye başla.</Text>
 
-      <TouchableOpacity style={styles.button} onPress={onNavigate}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => onNavigate('Login')} // 'Login' ekranına yönlendir
+      >
         <Text style={styles.buttonText}>Giriş Yap</Text>
       </TouchableOpacity>
     </View>
@@ -61,4 +64,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
 export default WelcomeScreen;
