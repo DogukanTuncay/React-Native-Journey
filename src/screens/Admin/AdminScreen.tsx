@@ -41,7 +41,41 @@ const AdminScreen = ({ onNavigate }) => {
   const handleLogout = () => {
     onNavigate('Welcome');
   };
+// Sıralama için yeni state'ler
+const [sortField, setSortField] = useState('name'); // Varsayılan sıralama alanı
+const [sortDirection, setSortDirection] = useState('asc'); // 'asc' veya 'desc'
 
+// Sıralama fonksiyonu
+const handleSort = (field) => {
+  // Aynı alana tıklandığında yön değişir
+  if (field === sortField) {
+    setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+  } else {
+    setSortField(field);
+    setSortDirection('asc');
+  }
+};
+// Sıralama işlemi
+const getSortedUsers = (users) => {
+  return [...users].sort((a, b) => {
+    let compareA = a[sortField]?.toLowerCase?.() || '';
+    let compareB = b[sortField]?.toLowerCase?.() || '';
+    
+    if (sortField === 'status') {
+      // Özel durum sıralaması (Aktif üstte)
+      compareA = a.status === 'Aktif' ? 0 : 1;
+      compareB = b.status === 'Aktif' ? 0 : 1;
+    }
+
+    if (compareA < compareB) {
+      return sortDirection === 'asc' ? -1 : 1;
+    }
+    if (compareA > compareB) {
+      return sortDirection === 'asc' ? 1 : -1;
+    }
+    return 0;
+  });
+};
   const handleAddUser = () => {
     if (!newUser.name || !newUser.email) {
       Alert.alert('Hata', 'Lütfen tüm alanları doldurun');
@@ -114,7 +148,7 @@ const AdminScreen = ({ onNavigate }) => {
                           (filterStatus === 'passive' && user.status === 'Pasif');
       return matchesSearch && matchesFilter;
     });
-
+    const sortedUsers = getSortedUsers(filteredUsers);
     return (
       <View style={styles.tabContent}>
         {/* Filtreleme Butonları */}
@@ -169,23 +203,44 @@ const AdminScreen = ({ onNavigate }) => {
           <View>
             {/* Tablo Başlığı */}
             <View style={styles.tableHeader}>
-              <View style={styles.headerCell}>
-                <Text style={styles.headerText}>İsim</Text>
+                <TouchableOpacity 
+                  style={[styles.headerCell, styles.headerTouchable]}
+                  onPress={() => handleSort('name')}>
+                  <Text style={styles.headerText}>İsim</Text>
+                  {sortField === 'name' && (
+                    <Text style={styles.sortIndicator}>
+                      {sortDirection === 'asc' ? '↑' : '↓'}
+                    </Text>
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity 
+                  style={[styles.headerCell, styles.headerTouchable]}
+                  onPress={() => handleSort('email')}>
+                  <Text style={styles.headerText}>E-posta</Text>
+                  {sortField === 'email' && (
+                    <Text style={styles.sortIndicator}>
+                      {sortDirection === 'asc' ? '↑' : '↓'}
+                    </Text>
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity 
+                  style={[styles.headerCell, styles.headerTouchable]}
+                  onPress={() => handleSort('status')}>
+                  <Text style={styles.headerText}>Durum</Text>
+                  {sortField === 'status' && (
+                    <Text style={styles.sortIndicator}>
+                      {sortDirection === 'asc' ? '↑' : '↓'}
+                    </Text>
+                  )}
+                </TouchableOpacity>
+                <View style={styles.headerCell}>
+                  <Text style={styles.headerText}>İşlemler</Text>
+                </View>
               </View>
-              <View style={styles.headerCell}>
-                <Text style={styles.headerText}>E-posta</Text>
-              </View>
-              <View style={styles.headerCell}>
-                <Text style={styles.headerText}>Durum</Text>
-              </View>
-              <View style={styles.headerCell}>
-                <Text style={styles.headerText}>İşlemler</Text>
-              </View>
-            </View>
 
             {/* Tablo İçeriği */}
             <ScrollView style={styles.tableBody}>
-              {filteredUsers.map(user => (
+            {sortedUsers.map(user => (
                 <View key={user.id} style={styles.tableRow}>
                   <View style={styles.tableCell}>
                     <Text style={styles.cellText}>{user.name}</Text>
@@ -610,6 +665,27 @@ const styles = StyleSheet.create({
     width: 150, // Sabit genişlik
     padding: 12,
     justifyContent: 'center',
+  },
+  headerTouchable: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingRight: 20, // Ok işareti için yer
+  },
+  sortIndicator: {
+    marginLeft: 5,
+    fontSize: 14,
+    color: '#2D3A5F',
+  },
+  headerCell: {
+    width: 150,
+    padding: 12,
+    backgroundColor: '#F8F9FA',
+  },
+  headerText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#2D3A5F',
   },
   tableCell: {
     width: 150, // Başlıkla aynı genişlikte
