@@ -71,7 +71,6 @@ const SplashScreen = ({ navigation }) => {
         ]}
         resizeMode="contain"
       />
-
       <Text style={styles.version}>Sürüm 1.0.0</Text>
     </View>
   );
