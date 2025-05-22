@@ -9,7 +9,7 @@ const avatars = [
 
 const names = ["Ali", "Ayşe", "Mehmet", "Zeynep", "Fatma", "Burak"];
 
-export default function LoginScreen({ onNavigate }) {
+export default function LoginScreen({ onNavigate }: { onNavigate: (screen: string, user: any) => void }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

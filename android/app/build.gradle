@@ -96,6 +96,8 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            manifestPlaceholders = [enableCrashReporting: "false"]
+            buildConfigField "boolean", "ENABLE_DEBUG_LOGGING", "true"
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -103,6 +105,7 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            buildConfigField "boolean", "ENABLE_DEBUG_LOGGING", "false"
         }
     }
 }
@@ -116,5 +119,13 @@ dependencies {
         implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor
+    }
+}
+
+// Çakışan kütüphaneleri çözmek için configuration ekliyoruz
+configurations.all {
+    resolutionStrategy {
+        force 'androidx.core:core:1.13.1'
+        exclude group: 'com.android.support'
     }
 }

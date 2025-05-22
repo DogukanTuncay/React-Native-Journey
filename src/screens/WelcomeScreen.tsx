@@ -3,7 +3,7 @@ import {
   View, Text, Image, TouchableOpacity, StyleSheet
 } from 'react-native';
 
-const WelcomeScreen = ({ onNavigate }) => {
+const WelcomeScreen = ({ onNavigate }: { onNavigate: any }) => {
   return (
     <View style={styles.container}>
       <Image source={require('../assets/logo.webp')} style={styles.logo} />
@@ -17,6 +17,21 @@ const WelcomeScreen = ({ onNavigate }) => {
       >
         <Text style={styles.buttonText}>Giriş Yap</Text>
       </TouchableOpacity>
+
+      {/* Bildirim Test Butonu */}
+      <TouchableOpacity
+        style={[styles.button, styles.notificationButton]}
+        onPress={() => onNavigate('Notifications')} // 'Notifications' ekranına yönlendir
+      >
+        <Text style={styles.buttonText}>Bildirim Testi</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#34C759' }]}
+        onPress={() => onNavigate('ActivityTracker')}
+      >
+        <Text style={styles.buttonText}>Aktivite & Sensör Takibi</Text>
+      </TouchableOpacity>
+     
     </View>
   );
 }
@@ -57,12 +72,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 3,
     elevation: 2,
+    marginBottom: 10, // Butonlar arasında boşluk
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
   },
+  notificationButton: {
+    backgroundColor: '#FF9500', // Farklı renk
+  }
 });
 
 export default WelcomeScreen;

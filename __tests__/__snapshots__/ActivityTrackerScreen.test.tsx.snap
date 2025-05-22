@@ -1,0 +1,225 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActivityTrackerScreen snapshot ile render kontrolü 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#F4F4F4",
+      "flexGrow": 1,
+      "padding": 20,
+    }
+  }
+>
+  <View>
+    <Text
+      style={
+        {
+          "color": "#2D3A5F",
+          "fontSize": 24,
+          "fontWeight": "bold",
+          "marginBottom": 20,
+          "textAlign": "center",
+        }
+      }
+    >
+      Sensör Verileri
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#007AFF",
+          "fontSize": 18,
+          "fontWeight": "600",
+          "marginBottom": 8,
+          "marginTop": 20,
+        }
+      }
+    >
+      Accelerometer (İvmeölçer)
+    </Text>
+    <Text>
+      X: 
+      <Text
+        style={
+          {
+            "color": "#333",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        0.00
+      </Text>
+    </Text>
+    <Text>
+      Y: 
+      <Text
+        style={
+          {
+            "color": "#333",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        0.00
+      </Text>
+    </Text>
+    <Text>
+      Z: 
+      <Text
+        style={
+          {
+            "color": "#333",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        0.00
+      </Text>
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#666",
+          "fontSize": 14,
+          "marginBottom": 10,
+          "paddingHorizontal": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+      İvmeölçer cihazın hareket hızındaki değişimleri ölçer. Yani cihazın ne kadar hızlı hızlandığını veya yavaşladığını anlar.
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#007AFF",
+          "fontSize": 18,
+          "fontWeight": "600",
+          "marginBottom": 8,
+          "marginTop": 20,
+        }
+      }
+    >
+      Gyroscope (Jiroskop)
+    </Text>
+    <Text>
+      X: 
+      <Text
+        style={
+          {
+            "color": "#333",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        0.00
+      </Text>
+    </Text>
+    <Text>
+      Y: 
+      <Text
+        style={
+          {
+            "color": "#333",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        0.00
+      </Text>
+    </Text>
+    <Text>
+      Z: 
+      <Text
+        style={
+          {
+            "color": "#333",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        0.00
+      </Text>
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#666",
+          "fontSize": 14,
+          "marginBottom": 10,
+          "paddingHorizontal": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+      Jiroskop cihazın kendi etrafında dönme hızını ölçer. Telefonun sağa, sola veya yukarı-aşağı dönmesini algılar.
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#007AFF",
+          "fontSize": 18,
+          "fontWeight": "600",
+          "marginBottom": 8,
+          "marginTop": 20,
+        }
+      }
+    >
+      Magnetometer (Manyetometre)
+    </Text>
+    <Text>
+      X: 
+      <Text
+        style={
+          {
+            "color": "#333",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        0.00
+      </Text>
+    </Text>
+    <Text>
+      Y: 
+      <Text
+        style={
+          {
+            "color": "#333",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        0.00
+      </Text>
+    </Text>
+    <Text>
+      Z: 
+      <Text
+        style={
+          {
+            "color": "#333",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        0.00
+      </Text>
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#666",
+          "fontSize": 14,
+          "marginBottom": 10,
+          "paddingHorizontal": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+      Manyetometre cihazın çevresindeki manyetik alanı ölçer. Genellikle pusula olarak kullanılır, yönünüzü bulmaya yardımcı olur.
+    </Text>
+  </View>
+</RCTScrollView>
+`;
